@@ -1,20 +1,17 @@
 import React from "react";
-import Header from "../components/Header";
+import Profile from "./Profile"; 
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Problems from "./Problems";
-let title = "User";
-const Dashboard = () => {
+const Dashboard = ({ accounts }) => {
   return (
-    <>
-      <div className="flex-grow container mx-auto p-4">
-              <h2 className="text-2xl font-semibold">Yo how you doing {title}</h2>
-        <p className="mt-4">Here you can view your progress and stats from various platforms.</p>
-      
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-semibold mb-4">Your Profiles</h2>
+      <div className="flex flex-wrap gap-4">
+        {accounts.map((acc, index) => (
+          <Profile key={index} account={acc} />
+        ))}
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default Dashboard;

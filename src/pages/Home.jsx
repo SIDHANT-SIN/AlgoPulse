@@ -6,10 +6,10 @@ import Problems from "./Problems";
 
 const platforms = ["Codeforces", "CodeChef", "LeetCode"];
 
-const Home = () => {
+const Home = ({ accounts, setAccounts }) => {
   const [selectedPlatform, setSelectedPlatform] = useState(platforms[0]);
   const [username, setUsername] = useState("");
-  const [accounts, setAccounts] = useState([]);
+  
 
   function handleAddAccount() {
     if (username.trim() === "") return;
@@ -26,7 +26,7 @@ const Home = () => {
         <h2 className="text-2xl font-semibold">
           Congrats on Making it here Fellow Traveller
         </h2>
-        <div >
+        <div>
           <select
             value={selectedPlatform}
             onChange={(e) => setSelectedPlatform(e.target.value)}
@@ -44,7 +44,6 @@ const Home = () => {
             className=""
             autoComplete="off"
             autoFocus
-            
           />
 
           <button onClick={handleAddAccount} className="">
