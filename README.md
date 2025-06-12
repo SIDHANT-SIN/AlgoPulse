@@ -7,7 +7,7 @@ AlgoPulse is a web application that helps competitive programmers track and mana
 - Link your competitive programming accounts (Codeforces, CodeChef, LeetCode)
 - Simple React frontend with Tailwind CSS styling
 - Responsive UI for all screen sizes
-- Add account handles and view them on the homepage
+- View Upcoming Contest and Past Contests with thier Solution links
 
 ## 🛠 Tech Stack
 
