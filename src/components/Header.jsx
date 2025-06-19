@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className="bg-blue-600 text-white p-4">
       <nav>
-        <div clasName="">
+        <div className="">
           <h1>AlgoPulse</h1>
           <a href="">Sign In</a>
           <a href="">Login In</a>
