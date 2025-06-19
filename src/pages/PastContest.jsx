@@ -1,41 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const PastContest = ({ accounts }) => {
-  const [pastContests, setPastContests] = useState([]);
-
-  const dummyPastContests = [
-    {
-      platform: "Codeforces",
-      contestName: "Codeforces Round #905",
-      date: "2025-05-20",
-      videoLink: "",
-    },
-    {
-      platform: "LeetCode",
-      contestName: "LeetCode Weekly Contest 398",
-      date: "2025-05-18",
-      videoLink: "",
-    },
-    {
-      platform: "CodeChef",
-      contestName: "CodeChef Starters 142",
-      date: "2025-05-15",
-      videoLink: "",
-    },
-  ];
-
-  useEffect(() => {
-    const usedPlatforms = accounts.map((acc) =>
-      acc.split(":")[0].trim().toLowerCase()
-    );
-
-    const filtered = dummyPastContests.filter((contest) =>
-      usedPlatforms.includes(contest.platform.toLowerCase())
-    );
-
-    setPastContests(filtered);
-  }, [accounts]);
-
+const PastContest = ({ contests }) => {
   return (
     <div className="flex-grow container mx-auto p-4">
       <h2 className="text-2xl font-semibold mb-2">Past Contests</h2>
@@ -43,34 +8,51 @@ const PastContest = ({ accounts }) => {
         You can view all past contests here and their solution videos.
       </p>
 
-      {pastContests.length === 0 ? (
-        <p className="text-gray-500 italic">
-          No past contests found for your selected platforms.
-        </p>
+      {!contests || !Array.isArray(contests) ? (
+        <p className="text-red-500 italic">No contests data available</p>
       ) : (
         <div className="grid gap-4">
-          {pastContests.map((contest, index) => (
-            <div
-              key={index}
-              className="border border-gray-300 p-4 rounded-md shadow-sm bg-gray-50"
-            >
-              <h3 className="text-lg font-bold">{contest.contestName}</h3>
-              <p className="text-sm text-gray-600">
-                Platform: {contest.platform}
-              </p>
-              <p className="text-sm text-gray-500">Date: {contest.date}</p>
-              <a
-                href={contest.videoLink}
-                className="text-blue-600 hover:underline mt-2 inline-block"
-              >
-                 Watch Solution
-              </a>
-            </div>
-          ))}
+          {contests
+            .filter((contest) => contest.phase === "FINISHED")
+            .map((contest) => {
+              const year = contest.startTime.slice(0, 4);
+              const month = contest.startTime.slice(5, 7);
+              const day = contest.startTime.slice(8, 10);
+
+              return (
+                <div
+                  key={contest.id}
+                  className="border border-gray-300 p-4 rounded-md shadow-sm bg-gray-50"
+                >
+                  <h3 className="text-lg font-bold">{contest.name}</h3>
+                  <p className="text-sm text-gray-600">Platform: Codeforces</p>
+                  <p className="text-sm text-gray-500">
+                    Date: {day}-{month}-{year}
+                  </p>
+                  <a
+                    href={""}
+                    className="text-blue-600 hover:underline mt-2 inline-block"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Watch Solution
+                  </a>
+                  <div>
+                    <a
+                      href={`https://codeforces.com/contest/${contest.id}`}
+                      className="text-blue-600 hover:underline mt-2 inline-block"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Contest Link
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       )}
     </div>
   );
 };
-
 export default PastContest;

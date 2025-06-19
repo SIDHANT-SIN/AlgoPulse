@@ -1,7 +1,19 @@
 import React from "react";
 import Contest from "./Contest";
 
-const Problems = ({ accounts }) => {
+const Problems = ({ contests }) => {
+
+  if (!contests || !Array.isArray(contests)) {
+    return (
+      <div className="flex-grow container mx-auto p-4">
+        <h2 className="text-2xl font-semibold">Upcoming Contests</h2>
+        <p className="mt-4 text-red-500">
+          {!contests ? "Loading contests" : "Codeforces Site is down"}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-grow container mx-auto p-4">
       <h2 className="text-2xl font-semibold">Upcoming Contests</h2>
@@ -15,9 +27,13 @@ const Problems = ({ accounts }) => {
         </h3>
 
         <div className="grid gap-4">
-          {accounts.map((acc, index) => (
-            <Contest key={index} account={acc} />
-          ))}
+          {contests.length > 0 ? (
+            contests.map((contest) => (
+              <Contest key={contest.id || contest._id} contest={contest} />
+            ))
+          ) : (
+            <p className="text-gray-500">No upcoming contests found</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 const Profile = ({ account }) => {
-  const [platform, username] = account.split(":");
+  const { platform, username, rating, title } = account;
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4 w-full md:w-1/2 lg:w-1/3">
@@ -9,8 +9,8 @@ const Profile = ({ account }) => {
         {username}
       </h3>
       <p className="text-gray-600">Platform: {platform}</p>
-      <p className="text-gray-600">Title: None</p>
-      <p className="text-gray-600">Rating: N/A</p>
+      <p className="text-gray-600">Title: { title}</p>
+      <p className="text-gray-600">Rating:{ rating}</p>
     </div>
   );
 };

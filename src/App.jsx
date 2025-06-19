@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -11,6 +11,30 @@ import Footer from "./components/Footer";
 
 const App = () => {
   const [accounts, setAccounts] = useState([]);
+  const [contests, setContests] = useState();
+
+
+  const [hasFetchedContests, setHasFetchedContests] = useState(false); // New flag
+
+  useEffect(() => {
+    if (!hasFetchedContests) {
+      
+      const fetchContests = async () => {
+        try {
+          const res = await fetch("http://localhost:8000/api/contests");
+          const data = await res.json();
+          setContests(data);
+          console.log("raw data", data);
+          setHasFetchedContests(true); // Mark as fetched
+        } catch (err) {
+          console.error("Contest fetch error:", err);
+        }
+      };
+      fetchContests();
+    }
+  }, [hasFetchedContests]); 
+  
+
 
   return (
     <Router>
@@ -44,7 +68,13 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              element={<Home accounts={accounts} setAccounts={setAccounts} />}
+              element={
+                <Home
+                  accounts={accounts}
+                  setAccounts={setAccounts}
+               
+                />
+              }
             />
             <Route
               path="/dashboard"
@@ -52,11 +82,11 @@ const App = () => {
             />
             <Route
               path="/problems"
-              element={<Problems accounts={accounts} />}
+              element={<Problems  contests={contests} />}
             />
             <Route
               path="/pastcontest"
-              element={<PastContest accounts={accounts} />}
+              element={<PastContest contests={contests} />}
             />
           </Routes>
         </main>
