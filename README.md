@@ -21,6 +21,6 @@ AlgoPulse is a web application for competitive programmers. It offers a dashboar
   
 
 ## Live Demo
-Check out the live demo of the project [here](https://algopulse-site.netlify.app/) .
+Check out the live demo of the project [here](https://algopulse-site.netlify.app) .
 
 ---
