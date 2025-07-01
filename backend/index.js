@@ -8,8 +8,7 @@ const mongoose = require("mongoose");
 app.use(cors());
 app.use(express.json());
 require("dotenv").config();
-require("./cron");
-
+require("./contestUpdation/cron");
 
 
 
@@ -19,12 +18,12 @@ mongoose
   .catch((err) => console.error("MongoDB Error:", err));
 
 
-  const accountRoutes = require("./routes");
-  app.use("/api/accounts", accountRoutes);
+const accountRoutes = require("./routes");
+app.use("/api/accounts", accountRoutes);
 
 const contestRoutes = require("./contestRoutes");
 app.use("/api/contests", contestRoutes);
 
-app.listen(8000, () => {
-  console.log("Server Started at port 8000");
+app.listen(process.env.PORT, () => {
+  console.log("Server Started");
 });
