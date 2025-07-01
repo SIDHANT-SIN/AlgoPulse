@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
+import axios from "axios";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Problems from "./pages/Problems";
@@ -15,12 +15,14 @@ const App = () => {
   const [contests, setContests] = useState();
 
   const [hasFetchedContests, setHasFetchedContests] = useState(false); // New flag
+  
+  const BASE_API_URL = import.meta.env.VITE_APP_API_URL; 
 
   useEffect(() => {
     if (!hasFetchedContests) {
       const fetchContests = async () => {
         try {
-          const res = await fetch("http://localhost:8000/api/contests");
+          const res = await fetch(`${BASE_API_URL}/api/contests`);
           const data = await res.json();
           setContests(data);
           console.log("raw data", data);

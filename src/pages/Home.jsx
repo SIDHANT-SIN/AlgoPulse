@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
 
+import axios from "axios";
 const platforms = ["Codeforces", "CodeChef", "LeetCode"];
 
 const Home = ({ accounts, setAccounts}) => {
@@ -8,18 +8,15 @@ const Home = ({ accounts, setAccounts}) => {
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const BASE_API_URL = import.meta.env.VITE_APP_API_URL;
   const handleDeleteAccount = async (accountId) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/accounts/${accountId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${BASE_API_URL}/api/accounts/${accountId}`, {
+        method: "DELETE",
+      });
 
       if (!res.ok) {
         throw new Error(`status: ${res.status}`);
@@ -40,7 +37,7 @@ const Home = ({ accounts, setAccounts}) => {
       setIsLoading(true);
       setError(null);
       try {
-        const res = await fetch("http://localhost:8000/api/accounts");
+        const res = await fetch(`${BASE_API_URL}/api/accounts`);
         if (!res.ok) {
           throw new Error(`status: ${res.status}`);
         }
@@ -66,7 +63,7 @@ const Home = ({ accounts, setAccounts}) => {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:8000/api/accounts", {
+      const res = await fetch(`${BASE_API_URL}/api/accounts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
