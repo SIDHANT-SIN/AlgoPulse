@@ -1,18 +1,26 @@
-# AlgoPulse 🚀
+# AlgoPulse
 
-AlgoPulse is a web application that helps competitive programmers track and manage their online judge accounts. You can link your accounts from popular platforms like Codeforces, CodeChef, and LeetCode, and monitor them from a central dashboard.
+## Description
+AlgoPulse is a web application for competitive programmers. It offers a dashboard to **actively track and centralize data**, featuring user statistics, upcoming contest countdowns, and past participation history from major online judge platforms Codeforces, CodeChef, and LeetCode.
 
-## ✨ Features
+## Features
+- **Upcoming Contests Dashboard:** A dedicated section displaying future coding competitions with precise countdown timers and essential contest details.
+- **Past Participated Contests History:** A comprehensive archive of contests a user has participated in, including performance metrics and links to results.
+- **User Statistics Overview:** A dashboard presenting key performance indicators and statistics fetched from linked judge accounts.
+- **Intuitive User Interface:** A clean, professional, and easy-to-navigate design tailored for competitive programmers.
 
-- Link your competitive programming accounts (Codeforces, CodeChef, LeetCode)
-- Simple React frontend with Tailwind CSS styling
-- Responsive UI for all screen sizes
-- View Upcoming Contest and Past Contests with thier Solution links
+## Technology Used
+- **Frontend:**
+  - React.js
+  - Tailwind CSS
 
-## 🛠 Tech Stack
+- **Backend:**
+  - Node.js
+  - Express.js 
+  - MongoDB
+  
 
-- **Frontend:** React, Tailwind CSS
-- **Routing:** React Router DOM
+## Live Demo
+Check out the live demo of the project [here](https://algopulse-site.netlify.app/) .
 
-```
-
+---
