@@ -5,8 +5,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Problems from "./pages/Problems";
 import PastContest from "./pages/PastContest";
-import SignIn from "./pages/SignIn";
-import Login from "./pages/Login";
+
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -80,8 +79,8 @@ const App = () => {
               path="/pastcontest"
               element={<PastContest contests={contests} />}
             />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/login" element={<Login />} />
+            
+          
           </Routes>
         </main>
 
