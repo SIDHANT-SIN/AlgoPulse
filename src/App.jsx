@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Problems from "./pages/Problems";
 import PastContest from "./pages/PastContest";
 
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -13,28 +14,24 @@ const App = () => {
   const [accounts, setAccounts] = useState([]);
   const [contests, setContests] = useState();
 
-
   const [hasFetchedContests, setHasFetchedContests] = useState(false); // New flag
 
   useEffect(() => {
     if (!hasFetchedContests) {
-      
       const fetchContests = async () => {
         try {
           const res = await fetch("http://localhost:8000/api/contests");
           const data = await res.json();
           setContests(data);
           console.log("raw data", data);
-          setHasFetchedContests(true); // Mark as fetched
+          setHasFetchedContests(true);
         } catch (err) {
           console.error("Contest fetch error:", err);
         }
       };
       fetchContests();
     }
-  }, [hasFetchedContests]); 
-  
-
+  }, [hasFetchedContests]);
 
   return (
     <Router>
@@ -68,13 +65,7 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              element={
-                <Home
-                  accounts={accounts}
-                  setAccounts={setAccounts}
-               
-                />
-              }
+              element={<Home accounts={accounts} setAccounts={setAccounts} />}
             />
             <Route
               path="/dashboard"
@@ -82,12 +73,14 @@ const App = () => {
             />
             <Route
               path="/problems"
-              element={<Problems  contests={contests} />}
+              element={<Problems contests={contests} />}
             />
             <Route
               path="/pastcontest"
               element={<PastContest contests={contests} />}
             />
+            
+          
           </Routes>
         </main>
 

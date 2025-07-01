@@ -1,13 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header className="bg-blue-600 text-white p-4">
       <nav>
-        <div className="">
-          <h1>AlgoPulse</h1>
-          <a href="">Sign In</a>
-          <a href="">Login In</a>
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">AlgoPulse</h1>
+          <div className="space-x-4">
+            
+             
+           
+            
+          </div>
         </div>
       </nav>
     </header>
@@ -15,14 +20,3 @@ const Header = () => {
 };
 
 export default Header;
-
-const App = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
-    
-   
-
-     
-    </div>
-  );
-};
