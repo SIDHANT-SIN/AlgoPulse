@@ -1,30 +1,44 @@
 import React from "react";
 import Contest from "./Contest";
 
-const Problems = ({ contests }) => (
-  <div className="max-w-7xl mx-auto py-12 px-4">
-    <h2 className="text-4xl font-bold text-gray-900 mb-8">Upcoming Contests</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {contests && contests.length > 0 ? (
-        contests.map((contest, idx) => (
-          <div
-            key={idx}
-            className="bg-white/80 backdrop-blur shadow-lg rounded-2xl p-6 border border-gray-100 hover:shadow-2xl transition"
-          >
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              {contest.name}
-            </h3>
-            <p className="text-gray-600 mb-2">{contest.description}</p>
-            <div className="text-sm text-gray-400">{contest.date}</div>
-          </div>
-        ))
-      ) : (
-        <div className="col-span-full text-center text-gray-400">
-          No upcoming contests found.
+const Problems = ({ contests }) => {
+  if (!contests || !Array.isArray(contests)) {
+    return (
+      <div className="flex-grow container mx-auto p-4">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-900">
+          Upcoming Contests
+        </h2>
+        <p className="mt-4 text-red-500">
+          {!contests ? "Loading contests" : "Codeforces Site is down"}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-grow container mx-auto p-4">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-900">
+        Upcoming Contests
+      </h2>
+      <p className="mt-4 text-gray-700">
+        We will let you mark all your contests and send you reminders if needed.
+      </p>
+      <div className="mt-6">
+        <h3 className="text-xl font-semibold mb-2 text-indigo-700">
+          Upcoming Contests for you
+        </h3>
+        <div className="grid gap-4">
+          {contests.length > 0 ? (
+            contests.map((contest) => (
+              <Contest key={contest.id || contest._id} contest={contest} />
+            ))
+          ) : (
+            <p className="text-gray-500">No upcoming contests found</p>
+          )}
         </div>
-      )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Problems;

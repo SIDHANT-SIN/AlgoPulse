@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Profile = () => (
-  <div className="max-w-2xl mx-auto py-16 px-4">
-    <div className="bg-white/80 backdrop-blur shadow-lg rounded-2xl p-8 border border-gray-100 flex flex-col items-center">
-      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-fuchsia-500 flex items-center justify-center text-white text-3xl font-bold mb-4 shadow-lg">
-        {/* Placeholder avatar */}
-        <span>U</span>
-      </div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">User Name</h2>
-      <p className="text-gray-600 mb-4">user@email.com</p>
-      <div className="w-full border-t border-gray-200 my-4"></div>
-      <div className="text-gray-500">
-        Profile details and stats coming soon...
-      </div>
+const Profile = ({ account }) => {
+  const { platform, username, rating, title } = account;
+
+  return (
+    <div className="bg-white shadow-md rounded-lg p-4 w-full md:w-1/2 lg:w-1/3">
+      <h3 className="text-xl font-bold text-gray-800 mb-2">{username}</h3>
+      <p className="text-gray-600">Platform: {platform}</p>
+      <p className="text-gray-600">Title: {title}</p>
+      <p className="text-gray-600">Rating: {rating}</p>
     </div>
-  </div>
-);
+  );
+};
 
 export default Profile;
