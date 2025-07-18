@@ -1,58 +1,31 @@
 import React, { useState, useEffect } from "react";
 
-const PastContest = ({ contests }) => {
-  return (
-    <div className="flex-grow container mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-2">Past Contests</h2>
-      <p className="mb-4 text-gray-600">
-        You can view all past contests here and their solution videos.
-      </p>
-
-      {!contests || !Array.isArray(contests) ? (
-        <p className="text-red-500 italic">No contests data available</p>
+const PastContest = ({ contests }) => (
+  <div className="max-w-7xl mx-auto py-12 px-4">
+    <h2 className="text-4xl font-bold text-gray-900 mb-8">Past Contests</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {contests && contests.length > 0 ? (
+        contests
+          .filter((contest) => contest.status === "past")
+          .map((contest, idx) => (
+            <div
+              key={idx}
+              className="bg-white/80 backdrop-blur shadow-lg rounded-2xl p-6 border border-gray-100 hover:shadow-2xl transition"
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                {contest.name}
+              </h3>
+              <p className="text-gray-600 mb-2">{contest.description}</p>
+              <div className="text-sm text-gray-400">{contest.date}</div>
+            </div>
+          ))
       ) : (
-        <div className="grid gap-4">
-          {contests
-            .filter((contest) => contest.phase === "FINISHED")
-            .map((contest) => {
-              const year = contest.startTime.slice(0, 4);
-              const month = contest.startTime.slice(5, 7);
-              const day = contest.startTime.slice(8, 10);
-
-              return (
-                <div
-                  key={contest.id}
-                  className="border border-gray-300 p-4 rounded-md shadow-sm bg-gray-50"
-                >
-                  <h3 className="text-lg font-bold">{contest.name}</h3>
-                  <p className="text-sm text-gray-600">Platform: Codeforces</p>
-                  <p className="text-sm text-gray-500">
-                    Date: {day}-{month}-{year}
-                  </p>
-                  <a
-                    href={""}
-                    className="text-blue-600 hover:underline mt-2 inline-block"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch Solution
-                  </a>
-                  <div>
-                    <a
-                      href={`https://codeforces.com/contest/${contest.id}`}
-                      className="text-blue-600 hover:underline mt-2 inline-block"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Contest Link
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
+        <div className="col-span-full text-center text-gray-400">
+          No past contests found.
         </div>
       )}
     </div>
-  );
-};
+  </div>
+);
+
 export default PastContest;

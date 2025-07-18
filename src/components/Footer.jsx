@@ -1,15 +1,11 @@
 import React from "react";
 
-const Footer = () => {
-  return (
-    <footer className="bg-gray-800 text-white p-4">
-      <nav>
-        <div className="">
-          <h1>&copy; {new Date().getFullYear()} ALL HAIL THE CF RATED 1800 PROBLEMS</h1>
-        </div>
-      </nav>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className="w-full border-t border-gray-200 bg-white/80 backdrop-blur py-4 mt-8">
+    <div className="max-w-7xl mx-auto text-center text-gray-400 text-sm">
+      &copy; {new Date().getFullYear()} AlgoPulse. All rights reserved.
+    </div>
+  </footer>
+);
 
 export default Footer;
