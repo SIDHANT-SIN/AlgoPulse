@@ -18,9 +18,5 @@ AlgoPulse is a web application for competitive programmers. It offers a dashboar
   - Node.js
   - Express.js 
   - MongoDB
-  
-
-## Live Demo
-Check out the live demo of the project [here](https://algopulse-site.netlify.app) .
 
 ---
